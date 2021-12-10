@@ -1,25 +1,53 @@
-import logo from './logo.svg';
 import './App.css';
+import Auth from "./components/auth";
+import Home from "./components/home";
+import manager from "./helpers/manager";
+import React from "react";
+import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+
+    state = {
+        isLogin: false,
+        user: null,
+    }
+
+    async componentDidMount() {
+
+        await manager.getUser()
+            .then((user) => {
+                if (user) {
+                    console.log("user logged in", user);
+                    this.setState({
+                        isLogin: true,
+                    })
+                } else {
+                    console.log("user not logged in")
+                    this.setState({
+                        isLogin: false,
+                    })
+                }
+            });
+    }
+
+    render() {
+        if (this.state.isLogin) {
+            return (
+                <div className="App">
+                    <Router>
+                        <Routes>
+                            <Route path="/" element={<Home/>}/>
+                            <Route path="*" element={<h1>NotFound</h1>}/>
+                        </Routes>
+                    </Router>
+                </div>
+            );
+        }
+
+        return (
+            <div className="App">
+                <Auth/>
+            </div>
+        );
+    }
 }
-
-export default App;
