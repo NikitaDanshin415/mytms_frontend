@@ -3,7 +3,7 @@ import Auth from "./components/auth";
 import Home from "./components/home";
 import manager from "./helpers/manager";
 import React from "react";
-import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
+import {Route, Routes, BrowserRouter as Router} from "react-router-dom";
 import {OidcLogin} from "./components/oidcAuth/OidcLogin"
 import Header from "./components/header/Header";
 
