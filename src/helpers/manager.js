@@ -6,7 +6,7 @@ const settings = {
     response_type: "code",
     scope: "openid profile TmsWebApi",
     redirect_uri: "http://localhost:3000/oidcLogin",
-    post_logout_redirect_uri: "http://localhost:3000/oidcLogout"
+    post_logout_redirect_uri: "http://localhost:3000/"
 }
 
 const manager = new UserManager(settings);
