@@ -4,6 +4,9 @@ import Home from "./components/home";
 import manager from "./helpers/manager";
 import React from "react";
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
+import {OidcLogin} from "./components/oidcAuth/OidcLogin"
+import Header from "./components/header/Header";
+import {OidcLogout} from "./components/oidcAuth/OidcLogout";
 
 export default class App extends React.Component {
 
@@ -17,14 +20,15 @@ export default class App extends React.Component {
         await manager.getUser()
             .then((user) => {
                 if (user) {
-                    console.log("user logged in", user);
                     this.setState({
                         isLogin: true,
+                        user: user,
                     })
                 } else {
                     console.log("user not logged in")
                     this.setState({
                         isLogin: false,
+                        user: null,
                     })
                 }
             });
@@ -34,9 +38,11 @@ export default class App extends React.Component {
         if (this.state.isLogin) {
             return (
                 <div className="App">
+                    <Header/>
                     <Router>
                         <Routes>
                             <Route path="/" element={<Home/>}/>
+                            <Route path="/oidcLogout" element={<OidcLogout/>}/>
                             <Route path="*" element={<h1>NotFound</h1>}/>
                         </Routes>
                     </Router>
@@ -46,7 +52,14 @@ export default class App extends React.Component {
 
         return (
             <div className="App">
-                <Auth/>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={ <Auth/>}/>
+                        <Route path="/oidcLogin" element={<OidcLogin/>}/>
+                        <Route path="/oidcLogout" element={<OidcLogout/>}/>
+                        <Route path="*" element={<h1>NotFound</h1>}/>
+                    </Routes>
+                </Router>
             </div>
         );
     }

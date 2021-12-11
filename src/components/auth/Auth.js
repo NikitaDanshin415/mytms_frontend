@@ -6,7 +6,6 @@ function login(){
     manager.signinRedirect();
 }
 
-
 function Auth() {
     return (
         <div className="Auth">
@@ -16,8 +15,7 @@ function Auth() {
                 </h1>
             </div>
             <div className={'Auth_buttons'}>
-                <button className={'transition'}>Регистрация</button>
-                <button className={'transition'} onClick={login}>Авторизация</button>
+                <button className={'transition'} onClick={login}>Войти</button>
             </div>
         </div>
     );
