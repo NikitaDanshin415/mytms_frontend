@@ -23,7 +23,7 @@ export default class Home extends React.Component {
             },
         });
 
-        return await res.json();
+        return await res.json()
     }
 
     componentDidMount() {
@@ -32,9 +32,9 @@ export default class Home extends React.Component {
                 if (user === null) {
                     console.log("Unauthorized");
                 } else {
+                    let a = await this.getProjects(user.access_token);
                     this.setState({
-                        projects: await this.getProjects(user.access_token)
-                        //надо думать
+                        projects: a.projects
                     })
                 }
             })
@@ -48,6 +48,22 @@ export default class Home extends React.Component {
     render() {
         const projects = this.state.projects;
 
+        if (projects != null) {
+            return (
+                <div className="Home">
+                    <h1>ProjectList</h1>
+                    {projects.map(
+                        e =>
+                            <div>
+                                <h2>{e.projectName}</h2>
+                                <div>{e.id}</div>
+                                <div>{e.projectStatusId}</div>
+                                <hr/>
+                            </div>
+                    )}
+                </div>
+            )
+        }
         return (
             <div className="Home">
                 <h1>ProjectList</h1>
