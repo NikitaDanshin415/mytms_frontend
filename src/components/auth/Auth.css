@@ -1,11 +1,9 @@
 body{
-    /*background-color: rgba(86, 146,163,30%);*/
-    /*background-image: url("./image/bg-01.jpg");*/
     background: rgba(86, 146,163,30%) ;
 }
 
 .Auth {
-    width: 100%;
+    width: 1440px;
     position: absolute;
     top: 40%;
     display: flex;

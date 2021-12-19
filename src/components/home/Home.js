@@ -1,12 +1,15 @@
 import React from "react";
 import './Home.css'
 import manager from "../../helpers/manager";
+import SearchPanel from "../serchPanel";
+
 
 export default class Home extends React.Component {
 
     state = {
         isLoaded: false,
-        projects: null,
+        projects: [],
+        term: '',
     }
 
     getProjects = async (token) => {
@@ -41,33 +44,50 @@ export default class Home extends React.Component {
             .catch((error) => {
                 console.log("project api error: " + error)
             })
+    }
 
+    serch(items, term){
+        if(term === ''){
+            return items;
+        }
 
+        return items.filter((item)=>{
+            return item.projectName.toLowerCase().indexOf(term.toLowerCase()) > -1;
+        })
+    }
+
+    onSearchChange = (term) =>{
+        this.setState({term});
     }
 
     render() {
-        const projects = this.state.projects;
+        const {projects, term} = this.state;
 
-        if (projects != null) {
+        const visivleItems = this.serch(projects, term);
+
+        if (visivleItems != null) {
             return (
                 <div className="Home">
-                    <h1>ProjectList</h1>
-                    {projects.map(
+                    <SearchPanel
+                        onSerchChange = {this.onSearchChange}
+                    />
+                    {visivleItems.map(
                         e =>
-                            <div>
+                            <div key={e.id}>
                                 <h2>{e.projectName}</h2>
                                 <div>{e.id}</div>
                                 <div>{e.projectStatusId}</div>
                                 <hr/>
                             </div>
                     )}
+                    <div>+
+                    </div>
                 </div>
             )
         }
         return (
             <div className="Home">
-                <h1>ProjectList</h1>
-
+                <SearchPanel/>
             </div>
         );
     }

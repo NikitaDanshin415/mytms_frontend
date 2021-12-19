@@ -1,0 +1,9 @@
+.searchPanel{
+    width: 100%;
+    margin: 15px 0;
+}
+
+.searchPanel input{
+    height: 35px;
+    width: 100%;
+}

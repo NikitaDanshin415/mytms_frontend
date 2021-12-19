@@ -49,7 +49,7 @@ export default class App extends React.Component {
         }
 
         return (
-            <div className="App">
+            <div className="App auth">
                 <Router>
                     <Routes>
                         <Route path="/" element={ <Auth/>}/>

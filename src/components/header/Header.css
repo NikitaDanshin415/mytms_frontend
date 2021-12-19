@@ -1,0 +1,38 @@
+header{
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header_title{
+    width: 80%;
+    align-items: center;
+}
+.header_buttons{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    width: 110px;
+    height: 35px;
+    border: 0 solid;
+    border-radius: 5px;
+    margin: 10%;
+    cursor: pointer;
+    background:rgb(233, 241, 253);
+    text-transform: uppercase;
+}
+
+.header_buttons button:hover{
+    background:rgb(255, 110, 112);
+    width: 110px;
+    height: 35px;
+}
+
+.transition {
+    transition: 1s;
+}
