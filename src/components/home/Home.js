@@ -2,6 +2,7 @@ import React from "react";
 import './Home.css'
 import manager from "../../helpers/manager";
 import SearchPanel from "../serchPanel";
+import ProjectList from "../projectList";
 
 
 export default class Home extends React.Component {
@@ -71,17 +72,8 @@ export default class Home extends React.Component {
                     <SearchPanel
                         onSerchChange = {this.onSearchChange}
                     />
-                    {visivleItems.map(
-                        e =>
-                            <div key={e.id}>
-                                <h2>{e.projectName}</h2>
-                                <div>{e.id}</div>
-                                <div>{e.projectStatusId}</div>
-                                <hr/>
-                            </div>
-                    )}
-                    <div>+
-                    </div>
+                    <ProjectList projects = {visivleItems}/>
+                    <div>+</div>
                 </div>
             )
         }

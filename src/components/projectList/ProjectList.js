@@ -1,11 +1,22 @@
 import React from "react";
+import ProjectListItem from "../projectListItem/ProjectListItem";
+import "./ProjectList.css"
 
-export default class ProjectList extends React.Component{
+const ProjectList = ({projects}) => {
 
-    render() {
-        return(
-            <h4>qwe</h4>
-        )
-    }
+    const elements = projects.map((item) => {
+        return (
+            <li key={item.id} className={"list-group-item"}>
+                <ProjectListItem project={item}/>
+            </li>
+        );
+    })
 
+    return (
+        <ul>
+            {elements}
+        </ul>
+    )
 }
+
+export default  ProjectList
