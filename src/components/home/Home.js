@@ -3,6 +3,8 @@ import './Home.css'
 import manager from "../../helpers/manager";
 import SearchPanel from "../serchPanel";
 import ProjectList from "../projectList";
+import PlusBtn from "../plusBtn/PlusBtn";
+import AddProjectForm from "../addProjectForm/AddProjectForm";
 
 
 export default class Home extends React.Component {
@@ -11,10 +13,11 @@ export default class Home extends React.Component {
         isLoaded: false,
         projects: [],
         term: '',
+        showAddModel:false
     }
 
     getProjects = async (token) => {
-        const res = await fetch(`https://localhost:44354/api/1/Project`, {
+        const res = await fetch(`https://localhost:44354/api/1/ProjectParticipant`, {
             method: 'GET',
             cache: 'no-cache',
             credentials: 'same-origin',
@@ -38,7 +41,7 @@ export default class Home extends React.Component {
                 } else {
                     let a = await this.getProjects(user.access_token);
                     this.setState({
-                        projects: a.projects
+                        projects: a.projectParticipant
                     })
                 }
             })
@@ -47,40 +50,53 @@ export default class Home extends React.Component {
             })
     }
 
-    serch(items, term){
-        if(term === ''){
+    serch(items, term) {
+        if (term === '') {
             return items;
         }
 
-        return items.filter((item)=>{
-            return item.projectName.toLowerCase().indexOf(term.toLowerCase()) > -1;
+        return items.filter((item) => {
+            return item.project.projectName.toLowerCase().indexOf(term.toLowerCase()) > -1;
         })
     }
 
-    onSearchChange = (term) =>{
+    onSearchChange = (term) => {
         this.setState({term});
     }
 
+    showAddProjectForm = () => {
+        this.setState({
+            showAddModel:true
+        })
+    }
+
+    hideAddProjectForm = () => {
+        this.setState({
+            showAddModel:false
+        })
+    }
     render() {
         const {projects, term} = this.state;
-
         const visivleItems = this.serch(projects, term);
 
-        if (visivleItems != null) {
-            return (
-                <div className="Home">
-                    <SearchPanel
-                        onSerchChange = {this.onSearchChange}
-                    />
-                    <ProjectList projects = {visivleItems}/>
-                    <div>+</div>
-                </div>
-            )
+        let qwe = null;
+        if(this.state.showAddModel){
+            qwe = <AddProjectForm hideModal = {this.hideAddProjectForm}/>
         }
+
         return (
             <div className="Home">
-                <SearchPanel/>
+                <SearchPanel
+                    onSerchChange = {this.onSearchChange}
+                />
+                <ProjectList
+                    projects={visivleItems}
+                />
+                <PlusBtn
+                    showModal = {this.showAddProjectForm}
+                />
+                {qwe}
             </div>
-        );
+        )
     }
 }

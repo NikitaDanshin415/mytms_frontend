@@ -1,0 +1,26 @@
+.plus_container{
+    display: flex;
+    justify-content: center;
+}
+
+.plus_container .plusBtn {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(#fff, #fff),linear-gradient(#fff, #fff), rgb(233, 241,253);
+    background-position: center;
+    background-size: 50% 4px, 4px 50%; /*thickness = 2px, length = 50% (25px)*/
+    background-repeat: no-repeat;
+    transition: 1s linear;
+
+}
+
+
+.plus_container .plusBtn:hover{
+    cursor: pointer;
+    background: linear-gradient(#fff, #fff),linear-gradient(#fff, #fff), rgb(150, 255, 150);
+    background-position: center;
+    background-size: 50% 4px, 4px 50%; /*thickness = 2px, length = 50% (25px)*/
+    background-repeat: no-repeat;
+}
