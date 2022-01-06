@@ -13,15 +13,14 @@ export default class AddProjectForm extends React.Component {
 
     addProject = async (e) => {
         e.preventDefault();
-        await manager
-            .getUser()
-            .then(async (user) => {
-                await this.api
-                    .createProject(this.state.projectName, user.access_token)
-                    .then((res) =>{
-                        console.log(res);
-                    })
-            });
+
+        const projectData = {
+            projectName: this.state.projectName,
+        }
+
+        await this.api
+            .createProject(projectData)
+
         this.props.hideModal();
     }
 

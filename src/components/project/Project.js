@@ -1,64 +1,77 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import TmsApi from "../../services/TmsApi";
-import manager from "../../helpers/manager";
+import NotFound from "../notFound/NotFound";
 
 const Project = () => {
-    const [projectId, setProjectId] = useState(useParams().id)
+    const [projectId] = useState(useParams().id);
+
+    const [projectParticipantInfo, setParticipantInfo] = useState({
+        additionDate: null,
+        id: null,
+    });
+
     const [projectInfo, setProjectInfo] = useState({
         additionDate: null,
         id: null,
         projectName: null,
-        projectStatusId: null,
-    })
+        projectStatusId: null
+    });
+
+    const [projectRole, setProjectRole] = useState({
+        id: null,
+        roleName: null,
+    });
 
     const [error, setError] = useState(false);
 
     const api = new TmsApi();
 
     useEffect(() => {
-        manager.getUser()
-            .then(async (user) => {
-                await api.getProject(projectId, user.access_token)
-                    .then(async (project) => {
+        api
+            .getProject(projectId)
+            .then((json) => {
+                let {project, projectRole} = json;
 
-                        if (project.status !== 200) {
-                            setError(true);
-                        } else {
-                            await project.json().then((r)=>{
-
-                                setProjectInfo({
-                                    additionDate: r.additionDate,
-                                    id: r.id,
-                                    projectName: r.projectName,
-                                    projectStatusId: r.projectStatusId,
-                                })
-                                }
-
-                            )
-
-                        }
-                    })
-
-
+                setProjectInfo({
+                    additionDate: project.additionDate,
+                    id: project.id,
+                    projectName: project.projectName,
+                    projectStatusId: project.projectStatusId
+                })
+                setProjectRole({
+                    id: projectRole.id,
+                    roleName: projectRole.roleName,
+                })
+            })
+            .catch((res) => {
+                setError(true)
             })
     }, [])
 
 
     if (error) {
-        return <h1>Not Found</h1>
+        return <NotFound/>
     } else {
-
+        const date = new Date(projectInfo.additionDate);
         return (
+            <div className={"projectItem"}>
 
-            <div>
-            <pre>
-                {projectInfo.projectName}<br/>
-                {projectInfo.projectStatusId}<br/>
-                {projectInfo.id}<br/>
-                {projectInfo.additionDate}<br/>
-            </pre>
+                <h2>{projectInfo.projectName}</h2>
+
+                <div className={"projectItem_info"}>
+                    <div>
+                        <span>{projectInfo.roleName}</span>
+                    </div>
+                    <div>
+                        <span>{projectRole.roleName}</span>
+                    </div>
+                    <div>
+                        <span>Дата создания проекта: {date.getDate()}.{date.getMonth() + 1}.{date.getFullYear()}</span>
+                    </div>
+                </div>
             </div>
+
         )
     }
 }

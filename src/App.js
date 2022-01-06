@@ -7,6 +7,7 @@ import {Route, Routes, BrowserRouter as Router} from "react-router-dom";
 import {OidcLogin} from "./components/oidcAuth/OidcLogin"
 import Header from "./components/header/Header";
 import Project from "./components/project";
+import NotFound from "./components/notFound/NotFound";
 
 export default class App extends React.Component {
 
@@ -46,9 +47,8 @@ export default class App extends React.Component {
                         <Header user={this.state.user}/>
                         <Routes>
                             <Route path="/project/:id" element={<Project/>}/>
-
                             <Route path="/" element={<Home/>}/>
-                            <Route path="*" element={<h1>NotFound</h1>}/>
+                            <Route path="*" element={<NotFound/>}/>
                         </Routes>
                     </div>
                 </Router>
@@ -63,7 +63,7 @@ export default class App extends React.Component {
                     <Routes>
                         <Route path="/" element={<Auth/>}/>
                         <Route path="/oidcLogin" element={<OidcLogin/>}/>
-                        <Route path="*" element={<h1>NotFound</h1>}/>
+                        <Route path="*" element={<NotFound/>}/>
                     </Routes>
                 </Router>
             </div>

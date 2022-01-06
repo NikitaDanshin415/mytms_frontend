@@ -18,14 +18,11 @@ export default class ProjectListItem extends React.Component {
                 <div className={"projectItem_info"}>
                     <div>
                         <span>{project.projectRole.roleName}</span>
-
-
                     </div>
                     <div>
-                        <span>Дата создания проекта: {date.getDate()}.{date.getMonth()}.{date.getFullYear()}</span>
+                        <span>Дата создания проекта: {date.getDate()}.{date.getMonth() + 1 }.{date.getFullYear()}</span>
                     </div>
                 </div>
-
             </div>
         )
     }
