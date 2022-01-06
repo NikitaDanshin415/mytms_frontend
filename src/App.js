@@ -6,12 +6,14 @@ import React from "react";
 import {Route, Routes, BrowserRouter as Router} from "react-router-dom";
 import {OidcLogin} from "./components/oidcAuth/OidcLogin"
 import Header from "./components/header/Header";
+import Project from "./components/project";
 
 export default class App extends React.Component {
 
     state = {
         isLogin: false,
         user: null,
+        token: null
     }
 
     async componentDidMount() {
@@ -22,12 +24,14 @@ export default class App extends React.Component {
                     this.setState({
                         isLogin: true,
                         user: user.profile.name,
+                        token: user.access_token,
                     })
                 } else {
                     console.log("user not logged in")
                     this.setState({
                         isLogin: false,
                         user: null,
+                        token: null,
                     })
                 }
             });
@@ -36,15 +40,20 @@ export default class App extends React.Component {
     render() {
         if (this.state.isLogin) {
             return (
-                <div className="App">
-                    <Header user={this.state.user}/>
-                    <Router>
+
+                <Router>
+                    <div className="App">
+                        <Header user={this.state.user}/>
                         <Routes>
+                            <Route path="/project/:id" element={<Project/>}/>
+
                             <Route path="/" element={<Home/>}/>
                             <Route path="*" element={<h1>NotFound</h1>}/>
                         </Routes>
-                    </Router>
-                </div>
+                    </div>
+                </Router>
+
+
             );
         }
 
@@ -52,7 +61,7 @@ export default class App extends React.Component {
             <div className="App auth">
                 <Router>
                     <Routes>
-                        <Route path="/" element={ <Auth/>}/>
+                        <Route path="/" element={<Auth/>}/>
                         <Route path="/oidcLogin" element={<OidcLogin/>}/>
                         <Route path="*" element={<h1>NotFound</h1>}/>
                     </Routes>

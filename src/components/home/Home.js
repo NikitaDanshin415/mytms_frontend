@@ -5,6 +5,7 @@ import SearchPanel from "../serchPanel";
 import ProjectList from "../projectList";
 import PlusBtn from "../plusBtn/PlusBtn";
 import AddProjectForm from "../addProjectForm/AddProjectForm";
+import TmsApi from "../../services/TmsApi";
 
 
 export default class Home extends React.Component {
@@ -15,6 +16,8 @@ export default class Home extends React.Component {
         term: '',
         showAddModel:false
     }
+
+    api = new TmsApi();
 
     getProjects = async (token) => {
         const res = await fetch(`https://localhost:44354/api/1/ProjectParticipant`, {
@@ -40,6 +43,7 @@ export default class Home extends React.Component {
                     console.log("Unauthorized");
                 } else {
                     let a = await this.getProjects(user.access_token);
+
                     this.setState({
                         projects: a.projectParticipant
                     })
@@ -49,6 +53,25 @@ export default class Home extends React.Component {
                 console.log("project api error: " + error)
             })
     }
+
+   componentDidUpdate(prevPropsp, prevState, snapshot) {
+        if(prevState.projects === this.state.projects){
+            manager.getUser()
+                .then(async (user) => {
+                    if (user === null) {
+                        console.log("Unauthorized");
+                    } else {
+                        let a = await this.getProjects(user.access_token);
+                        this.setState({
+                            projects: a.projectParticipant
+                        })
+                    }
+                })
+                .catch((error) => {
+                    console.log("project api error: " + error)
+                })
+        }
+   }
 
     serch(items, term) {
         if (term === '') {
@@ -79,9 +102,9 @@ export default class Home extends React.Component {
         const {projects, term} = this.state;
         const visivleItems = this.serch(projects, term);
 
-        let qwe = null;
+        let addBtn = null;
         if(this.state.showAddModel){
-            qwe = <AddProjectForm hideModal = {this.hideAddProjectForm}/>
+            addBtn = <AddProjectForm hideModal = {this.hideAddProjectForm}/>
         }
 
         return (
@@ -95,7 +118,7 @@ export default class Home extends React.Component {
                 <PlusBtn
                     showModal = {this.showAddProjectForm}
                 />
-                {qwe}
+                {addBtn}
             </div>
         )
     }

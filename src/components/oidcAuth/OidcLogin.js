@@ -14,5 +14,9 @@ export const  OidcLogin = () => {
         .catch(error => {
             console.log(error);
         })
+
+    return(
+        ""
+    );
 }
 

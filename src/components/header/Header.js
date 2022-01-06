@@ -1,6 +1,7 @@
 import React from "react";
 import manager from "../../helpers/manager";
 import "./Header.css";
+import {Link} from "react-router-dom";
 
 export default class Header extends React.Component {
     state = {
@@ -8,7 +9,7 @@ export default class Header extends React.Component {
     }
 
     componentDidMount() {
-        manager.getUser().then(async res =>{
+        manager.getUser().then(async res => {
             await this.setState({
                 user: res.profile.name
             })
@@ -16,14 +17,18 @@ export default class Header extends React.Component {
     }
 
     render() {
-        function logout(){
+        function logout() {
             manager.signoutRedirect();
         }
 
-        return(
+        return (
             <header>
                 <div className={"header_title"}>
-                    <h1>Система управления тестовыми сценариями</h1>
+                    <Link to={"/"}>
+                        <div>
+                            <h1>Система управления тестовыми сценариями</h1>
+                        </div>
+                    </Link>
                 </div>
                 <div className={"header_buttons"}>
                     <span>{this.state.user}</span>

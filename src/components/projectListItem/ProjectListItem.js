@@ -1,5 +1,6 @@
 import React from "react";
 import "./ProjectListItem.css";
+import {Link} from "react-router-dom";
 
 export default class ProjectListItem extends React.Component {
 
@@ -11,11 +12,14 @@ export default class ProjectListItem extends React.Component {
 
         return (
             <div className={"projectItem"}>
-                <h2>{project.project.projectName}</h2>
-
+                <Link to={`/project/${project.id}`}>
+                    <h2>{project.project.projectName}</h2>
+                </Link>
                 <div className={"projectItem_info"}>
                     <div>
                         <span>{project.projectRole.roleName}</span>
+
+
                     </div>
                     <div>
                         <span>Дата создания проекта: {date.getDate()}.{date.getMonth()}.{date.getFullYear()}</span>
