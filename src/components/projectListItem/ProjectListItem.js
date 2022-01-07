@@ -12,7 +12,7 @@ export default class ProjectListItem extends React.Component {
 
         return (
             <div className={"projectItem"}>
-                <Link to={`/project/${project.id}`}>
+                <Link to={`/project/${project.project.id}`}>
                     <h2>{project.project.projectName}</h2>
                 </Link>
                 <div className={"projectItem_info"}>
