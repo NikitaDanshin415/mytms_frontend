@@ -36,3 +36,11 @@ header button{
 .transition {
     transition: 1s;
 }
+
+a, a:hover,a:visited, a:focus {
+    text-decoration:none;
+}
+
+header a, header a:hover, header a:visited, header a:focus{
+    color: black
+}

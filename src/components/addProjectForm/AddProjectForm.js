@@ -1,7 +1,6 @@
 import React from "react";
 import "./AddProjectForm.css";
 import TmsApi from "../../services/TmsApi";
-import manager from "../../helpers/manager";
 
 export default class AddProjectForm extends React.Component {
 

@@ -1,0 +1,19 @@
+.projectHeader{
+    background-color: rgb(233, 241,253);
+}
+
+.project_content{
+    display: flex;
+
+}
+
+
+.projectTestPlan{
+    border: 1px solid black;
+    width: 25%;
+}
+
+.projectTestCase{
+    width: 75%;
+    border: 1px solid black;
+}
