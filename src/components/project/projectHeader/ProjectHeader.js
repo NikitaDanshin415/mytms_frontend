@@ -7,11 +7,7 @@ const ProjectHeader = (props) =>{
     return (
         <div className={"projectHeader"}>
             <h2>{projectInfo.projectName}</h2>
-
             <div className={"projectItem_info"}>
-                <div>
-                    <span>{projectInfo.roleName}</span>
-                </div>
                 <div>
                     <span>{role.roleName}</span>
                 </div>

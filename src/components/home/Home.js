@@ -54,7 +54,7 @@ export default class Home extends React.Component {
             })
     }
 
-   componentDidUpdate(prevPropsp, prevState, snapshot) {
+   componentDidUpdate(prevProps, prevState, snapshot) {
         if(prevState.projects === this.state.projects){
             manager.getUser()
                 .then(async (user) => {

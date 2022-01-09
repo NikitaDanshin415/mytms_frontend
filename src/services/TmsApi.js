@@ -90,7 +90,6 @@ export default class TmsApi {
         return await this.basePostRequest("Project", data)
     }
 
-
     /**
      * Получить проект по id.
      * @param id
@@ -108,7 +107,27 @@ export default class TmsApi {
         return await this.baseGetRequest("ProjectParticipant");
     }
 
+    /**
+     * Добавить в систему план тестирования.
+     * @returns {Promise<*>}
+     */
+    createTestPlan = async (ProjectId) => {
+        const data = {
+            "TestPlanName": "test from ui",
+            "Description": "string",
+            "ProjectId": ProjectId
+        }
 
+        return await this.basePostRequest("TestPlan", data)
+    }
+
+    /**
+     * Получить список всех планов тестирования проекта.
+     * @returns {Promise<*>}
+     */
+    getTestPlans = async (projectId) => {
+        return await this.baseGetRequest("TestPlan", projectId);
+    }
 }
 
 

@@ -1,0 +1,12 @@
+.projectTestPlanElement{
+    border: 1px solid black;
+}
+
+.projectTestPlanElement:hover{
+    background-color: rgba(150, 255, 150, 50%);
+    cursor: pointer;
+}
+
+.selected{
+    background-color: rgba(150, 255, 150, 50%);
+}
