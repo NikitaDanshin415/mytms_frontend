@@ -4,6 +4,7 @@ import "./ProjectList.css"
 
 const ProjectList = ({projects}) => {
 
+
     const elements = projects.map((item) => {
         return (
             <li key={item.id} className={"list-group-item"}>
@@ -12,6 +13,7 @@ const ProjectList = ({projects}) => {
         );
     })
 
+
     return (
         <ul>
             {elements}
@@ -19,4 +21,4 @@ const ProjectList = ({projects}) => {
     )
 }
 
-export default  ProjectList
+export default ProjectList

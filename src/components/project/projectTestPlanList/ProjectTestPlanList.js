@@ -13,8 +13,13 @@ const ProjectTestPlanList = (props) => {
     }
 
 
-    let list = props.testPlans.map((el) => {
+    if(props.testPlans===undefined){
+        return null
+    }
+
+    const list = props.testPlans.map((el) => {
         let selected = false;
+
         if (el.id === props.selectedPlan){
             selected = true;
         }

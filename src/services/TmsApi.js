@@ -3,7 +3,6 @@ import manager from "../helpers/manager";
 export default class TmsApi {
     _apiBase = 'https://localhost:44354/api/1';
 
-
     getToken = async () => {
         let token;
         await manager
@@ -70,7 +69,7 @@ export default class TmsApi {
                         'Connection': 'keep-alive',
                         'Authorization': 'Bearer ' + token,
                     },
-                    body: JSON.stringify(data) // body data type must match "Content-Type" header
+                    body: JSON.stringify(data)
                 });
             })
             .then((res) => {
@@ -104,7 +103,7 @@ export default class TmsApi {
      * @returns {Promise<*>}
      */
     getProjects = async () => {
-        return await this.baseGetRequest("ProjectParticipant");
+        return await this.baseGetRequest("ProjectParticipant", "");
     }
 
     /**
