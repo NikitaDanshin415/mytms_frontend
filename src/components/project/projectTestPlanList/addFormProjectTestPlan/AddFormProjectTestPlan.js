@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
-import TmsApi from "../../services/TmsApi";
 
-const AddProjectForm = (props) => {
+
+const AddFormProjectTestPlan = (props) => {
 
 
     const [projectName, setProjectName] = useState("")
@@ -14,15 +14,6 @@ const AddProjectForm = (props) => {
 
     const addProject = (e) => {
         e.preventDefault();
-        const api = new TmsApi();
-
-        const projectData = {
-            projectName: projectName,
-        }
-
-        api.createProject(projectData)
-            .then(props.handleClose());
-
     }
 
     return (
@@ -51,4 +42,4 @@ const AddProjectForm = (props) => {
     );
 }
 
-export default AddProjectForm;
+export default AddFormProjectTestPlan;

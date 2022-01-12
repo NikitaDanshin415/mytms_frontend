@@ -41,24 +41,24 @@ export default class App extends React.Component {
     render() {
         if (this.state.isLogin) {
             return (
-
-                <Router>
-                    <div className="App">
+                <div className="container">
+                    <Router>
                         <Header user={this.state.user}/>
                         <Routes>
                             <Route path="/project/:id" element={<Project/>}/>
                             <Route path="/" element={<Home/>}/>
                             <Route path="*" element={<NotFound/>}/>
                         </Routes>
-                    </div>
-                </Router>
+
+                    </Router>
+                </div>
 
 
             );
         }
 
         return (
-            <div className="App auth">
+            <div className="App auth container">
                 <Router>
                     <Routes>
                         <Route path="/" element={<Auth/>}/>

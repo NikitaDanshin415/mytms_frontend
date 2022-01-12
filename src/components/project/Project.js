@@ -26,10 +26,9 @@ const Project = () => {
         }
     });
     const [testPlans, setTestPlans] = useState([]);
-    const [showAddTestPlanWindow, setshowAddTestPlanWindow] = useState([false]);
+    const [showAddTestPlanWindow, setShowAddTestPlanWindow] = useState([false]);
     const [selectedPlan, setSelectedPlan] = useState(null)
     const [error, setError] = useState(false);
-
 
 
     const api = new TmsApi();
@@ -56,22 +55,12 @@ const Project = () => {
             setError(true)
             console.log(error)
         });
-
-        api
-            .getTestPlans(projectId)
-            .then((json) =>{
-                setTestPlans(json.testPlans)
-            })
-            .catch((error) => {
-                setError(true)
-                console.log(error);
-            })
     }, [])
 
     useEffect(() => {
         api
             .getTestPlans(projectId)
-            .then((json) =>{
+            .then((json) => {
                 setTestPlans(json.testPlans)
             })
             .catch((error) => {
@@ -82,22 +71,31 @@ const Project = () => {
 
 
 
+
     if (error) {
         return <NotFound/>
     } else {
 
         return (
-            <div>
-                <ProjectHeader projectInfo={projectInfo.project} role={projectInfo.projectRole}/>
-                <div className={"project_content"}>
-                    <ProjectTestPlanList
-                        projectId = {projectId}
-                        testPlans={testPlans}
-                        selectPlan={setSelectedPlan}
-                        TestPlanAddWindow = {setshowAddTestPlanWindow}
-                        selectedPlan={selectedPlan}
-                    />
-                    <ProjectTestCaseList selectedPlan={selectedPlan}/>
+            <div className="container ">
+                <div className={"row"}>
+                    <ProjectHeader projectInfo={projectInfo.project} role={projectInfo.projectRole}/>
+                </div>
+
+                <div className={"project_content row "}>
+                    <div className={"col-3 p0 m0"}>
+                        <ProjectTestPlanList
+                            projectId={projectId}
+                            testPlans={testPlans}
+                            selectPlan={setSelectedPlan}
+                            TestPlanAddWindow={setShowAddTestPlanWindow}
+                            selectedPlan={selectedPlan}
+                        />
+                    </div>
+                    <div className={"col-9 p0 m0"}>
+                        <ProjectTestCaseList selectedPlan={selectedPlan}/>
+                    </div>
+
                 </div>
             </div>
         )

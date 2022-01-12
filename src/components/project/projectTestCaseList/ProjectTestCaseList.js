@@ -1,7 +1,7 @@
 const ProjectTestCaseList = (props) =>{
     return(
-        <div className={"projectTestCase"}>
-            <h2>Сценарии тетсирования тестирования</h2>
+        <div className={"projectTestCase container"}>
+            <h2>Сценарии тестирования тестирования</h2>
             <div>
                 Выбран план с id : {props.selectedPlan}
             </div>

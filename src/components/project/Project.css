@@ -10,11 +10,9 @@
 
 .projectTestPlan{
     border: 1px solid black;
-    width: 25%;
     padding-bottom: 30px;
 }
 
 .projectTestCase{
-    width: 75%;
     border: 1px solid black;
 }

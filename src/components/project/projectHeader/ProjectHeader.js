@@ -5,7 +5,7 @@ const ProjectHeader = (props) =>{
 
     const date = new Date(projectInfo.additionDate);
     return (
-        <div className={"projectHeader"}>
+        <div className={"projectHeader container"}>
             <h2>{projectInfo.projectName}</h2>
             <div className={"projectItem_info"}>
                 <div>

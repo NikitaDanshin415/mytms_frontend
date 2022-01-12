@@ -8,7 +8,7 @@ function login(){
 
 function Auth() {
     return (
-        <div className="Auth">
+        <div className="Auth container">
             <div className={'Auth_title'}>
                 <h1>
                     Система управления тестовыми сценариями

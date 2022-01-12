@@ -1,6 +1,5 @@
 import React from "react";
 import './Home.css'
-import manager from "../../helpers/manager";
 import SearchPanel from "../serchPanel";
 import ProjectList from "../projectList";
 import PlusBtn from "../plusBtn/PlusBtn";
@@ -36,7 +35,6 @@ export default class Home extends React.Component {
         if (prevState.showAddModel !== this.state.showAddModel) {
             this.getProjects()
                 .then((res) =>{
-                    console.log(res)
                     this.setState({
                         projects: res.projectParticipant
                     });
@@ -74,9 +72,9 @@ export default class Home extends React.Component {
         const {projects, term} = this.state;
         const visivleItems = this.search(projects, term);
 
-        let addBtn = null;
+        let modalAddForm = null;
         if (this.state.showAddModel) {
-            addBtn = <AddProjectForm hideModal={this.hideAddProjectForm}/>
+            modalAddForm = <AddProjectForm show={"true"} handleClose={this.hideAddProjectForm}/>
         }
 
         return (
@@ -90,8 +88,9 @@ export default class Home extends React.Component {
                 <PlusBtn
                     showModal={this.showAddProjectForm}
                 />
-                {addBtn}
+                {modalAddForm}
             </div>
         )
     }
 }
+

@@ -5,3 +5,11 @@ ul {
     margin-left: 0; /* Отступ слева в браузере IE и Opera */
     padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
 }
+
+.list-group-item{
+    background-color: rgb(233, 241,253);
+}
+
+.list-group-item:hover{
+    background-color: rgba(150, 255, 150, 25%);
+}

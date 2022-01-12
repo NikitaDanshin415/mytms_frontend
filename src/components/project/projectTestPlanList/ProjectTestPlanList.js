@@ -2,13 +2,15 @@ import PlusBtn from "../../plusBtn/PlusBtn";
 import TmsApi from "../../../services/TmsApi";
 import ProjectTestPlanElement from "../ProjectTestPlanElement";
 
+
 const ProjectTestPlanList = (props) => {
 
-    const api = new TmsApi();
 
     const addTestPlan = async () => {
         props.TestPlanAddWindow(true);
-        await api.createTestPlan(props.projectId);
+
+
+        //await api.createTestPlan(props.projectId);
         props.TestPlanAddWindow(false);
     }
 
@@ -31,20 +33,25 @@ const ProjectTestPlanList = (props) => {
         )
     })
 
+    let modal = null;
+    // if(props.TestPlanAddWindow){
+    //     // modal = <AddFormProjectTestPlan show={props.TestPlanAddWindow} onHide={props.hideAddTestPlanWindow}/>
+    // }
 
     return (
-        <div className={"projectTestPlan"}>
+        <div className={"projectTestPlan container p0 m0"}>
             <div>
                 <h2>Планы тестирования</h2>
             </div>
-            <div>
+            <div >
                 <input type={"text"}/>
             </div>
-            <div>
+            <div >
                 Всего= {list.length}
                 <ul>{list}</ul>
             </div>
             <PlusBtn showModal={addTestPlan}/>
+            {modal}
         </div>
     );
 }
