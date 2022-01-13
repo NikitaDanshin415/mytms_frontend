@@ -130,6 +130,16 @@ export default class TmsApi {
     getProjectUsers = async (projectId) => {
         return await this.baseGetRequest(`ProjectParticipant`, projectId+"/users");
     }
+
+    /**
+     * Поиск пользователя.
+     * @returns {Promise<*>}
+     */
+    findUser = async (data) => {
+        return await this.basePostRequest(`ProjectParticipant`, data);
+    }
+
+
 }
 
 

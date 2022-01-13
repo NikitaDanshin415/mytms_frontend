@@ -2,12 +2,14 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import ProjectUserListItem from "../projectUserListItem/ProjectUserListItem";
 import TmsApi from "../../services/TmsApi";
+import PlusBtn from "../plusBtn/PlusBtn";
+import AddUserInProjectForm from "../addUserInProjectForm/AddUserInProjectForm";
 
 const ProjectUserList = () => {
     const [projectId] = useState(useParams().id);
     const api = new TmsApi();
     const [userList, setUserList] = useState([]);
-
+    const [showAddForm, setShowAddForm] = useState(false);
 
     useEffect(() => {
         api.getProjectUsers(projectId)
@@ -25,6 +27,19 @@ const ProjectUserList = () => {
         )
     })
 
+    const showAddModalForm = () => {
+        setShowAddForm(true);
+    }
+
+    const closeAddModalForm = () => {
+        setShowAddForm(false);
+    }
+
+    let modal = null
+    if(showAddForm){
+        modal = <AddUserInProjectForm show={showAddForm} handleClose={closeAddModalForm}/>
+    }
+
     return (
         <div className={"container"}>
             <table className="table">
@@ -36,10 +51,11 @@ const ProjectUserList = () => {
                 </tr>
                 </thead>
                 <tbody>
-                    {elements}
+                {elements}
                 </tbody>
-
             </table>
+            <PlusBtn showModal = {showAddModalForm}/>
+            {modal}
         </div>
     )
 }
