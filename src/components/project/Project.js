@@ -4,8 +4,7 @@ import TmsApi from "../../services/TmsApi";
 import NotFound from "../notFound/NotFound";
 import './Project.css'
 import ProjectHeader from "./projectHeader/ProjectHeader";
-import ProjectTestPlanList from "./projectTestPlanList";
-import ProjectTestCaseList from "./projectTestCaseList";
+import ProjectContent from "./projectContent/ProjectContent";
 
 const Project = () => {
     const [projectId] = useState(useParams().id);
@@ -25,9 +24,7 @@ const Project = () => {
             roleName: null,
         }
     });
-    const [testPlans, setTestPlans] = useState([]);
-    const [showAddTestPlanWindow, setShowAddTestPlanWindow] = useState([false]);
-    const [selectedPlan, setSelectedPlan] = useState(null)
+
     const [error, setError] = useState(false);
 
 
@@ -57,46 +54,14 @@ const Project = () => {
         });
     }, [])
 
-    useEffect(() => {
-        api
-            .getTestPlans(projectId)
-            .then((json) => {
-                setTestPlans(json.testPlans)
-            })
-            .catch((error) => {
-                setError(true)
-                console.log(error);
-            })
-    }, [showAddTestPlanWindow])
-
-
-
 
     if (error) {
         return <NotFound/>
     } else {
-
         return (
             <div className="container ">
-                <div className={"row"}>
-                    <ProjectHeader projectInfo={projectInfo.project} role={projectInfo.projectRole}/>
-                </div>
-
-                <div className={"project_content row "}>
-                    <div className={"col-3 p0 m0"}>
-                        <ProjectTestPlanList
-                            projectId={projectId}
-                            testPlans={testPlans}
-                            selectPlan={setSelectedPlan}
-                            TestPlanAddWindow={setShowAddTestPlanWindow}
-                            selectedPlan={selectedPlan}
-                        />
-                    </div>
-                    <div className={"col-9 p0 m0"}>
-                        <ProjectTestCaseList selectedPlan={selectedPlan}/>
-                    </div>
-
-                </div>
+                <ProjectHeader projectInfo={projectInfo.project} role={projectInfo.projectRole}/>
+                <ProjectContent projectInfo={projectInfo}/>
             </div>
         )
     }

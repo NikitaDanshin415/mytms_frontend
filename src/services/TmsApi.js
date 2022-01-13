@@ -110,13 +110,7 @@ export default class TmsApi {
      * Добавить в систему план тестирования.
      * @returns {Promise<*>}
      */
-    createTestPlan = async (ProjectId) => {
-        const data = {
-            "TestPlanName": "test from ui",
-            "Description": "string",
-            "ProjectId": ProjectId
-        }
-
+    createTestPlan = async (data) => {
         return await this.basePostRequest("TestPlan", data)
     }
 
@@ -126,6 +120,15 @@ export default class TmsApi {
      */
     getTestPlans = async (projectId) => {
         return await this.baseGetRequest("TestPlan", projectId);
+    }
+
+
+    /**
+     * Получить список всех пользователей проекта.
+     * @returns {Promise<*>}
+     */
+    getProjectUsers = async (projectId) => {
+        return await this.baseGetRequest(`ProjectParticipant`, projectId+"/users");
     }
 }
 

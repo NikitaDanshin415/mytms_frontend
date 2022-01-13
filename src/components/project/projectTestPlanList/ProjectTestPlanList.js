@@ -1,18 +1,9 @@
 import PlusBtn from "../../plusBtn/PlusBtn";
-import TmsApi from "../../../services/TmsApi";
 import ProjectTestPlanElement from "../ProjectTestPlanElement";
-
+import React, {useState} from "react";
+import AddFormProjectTestPlan from "./addFormProjectTestPlan/AddFormProjectTestPlan";
 
 const ProjectTestPlanList = (props) => {
-
-
-    const addTestPlan = async () => {
-        props.TestPlanAddWindow(true);
-
-
-        //await api.createTestPlan(props.projectId);
-        props.TestPlanAddWindow(false);
-    }
 
 
     if(props.testPlans===undefined){
@@ -33,10 +24,10 @@ const ProjectTestPlanList = (props) => {
         )
     })
 
-    let modal = null;
-    // if(props.TestPlanAddWindow){
-    //     // modal = <AddFormProjectTestPlan show={props.TestPlanAddWindow} onHide={props.hideAddTestPlanWindow}/>
-    // }
+    let modalAddForm = null;
+    if (props.showAddForm) {
+        modalAddForm = <AddFormProjectTestPlan show={"true"} handleClose={props.setHideAddForm}/>
+    }
 
     return (
         <div className={"projectTestPlan container p0 m0"}>
@@ -50,8 +41,10 @@ const ProjectTestPlanList = (props) => {
                 Всего= {list.length}
                 <ul>{list}</ul>
             </div>
-            <PlusBtn showModal={addTestPlan}/>
-            {modal}
+            <PlusBtn
+                showModal={props.showAddTestPlanForm}
+            />
+            {modalAddForm}
         </div>
     );
 }
