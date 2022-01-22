@@ -4,6 +4,7 @@ import ProjectUserListItem from "../projectUserListItem/ProjectUserListItem";
 import TmsApi from "../../services/TmsApi";
 import PlusBtn from "../plusBtn/PlusBtn";
 import AddUserInProjectForm from "../addUserInProjectForm/AddUserInProjectForm";
+import data from "bootstrap/js/src/dom/data";
 
 const ProjectUserList = () => {
     const [projectId] = useState(useParams().id);
@@ -18,12 +19,25 @@ const ProjectUserList = () => {
                     res.projectParticipantsUserList
                 )
             })
-    }, [])
+    }, [showAddForm])
 
+
+    const deleteProjectParticipant = (id) =>{
+        const api = new TmsApi();
+        api.deleteProjectParticipant(id)
+            .then(()=>{
+                api.getProjectUsers(projectId)
+                    .then((res) => {
+                        setUserList(
+                            res.projectParticipantsUserList
+                        )
+                    })
+            })
+    }
 
     const elements = userList.map((el) => {
         return (
-            <ProjectUserListItem userInfo={el}/>
+            <ProjectUserListItem userInfo={el} delete={deleteProjectParticipant}/>
         )
     })
 

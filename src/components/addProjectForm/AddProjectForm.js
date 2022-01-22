@@ -22,7 +22,6 @@ const AddProjectForm = (props) => {
 
         api.createProject(projectData)
             .then( r => props.handleClose());
-
     }
 
     return (

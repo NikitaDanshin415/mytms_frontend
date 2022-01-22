@@ -136,9 +136,67 @@ export default class TmsApi {
      * @returns {Promise<*>}
      */
     findUser = async (data) => {
+        return this
+            .getToken()
+            .then(async (token) => {
+                return await fetch(`${this._apiBase}/user?userName=${data.userName}`, {
+                    method: "GET",
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': '*/*',
+                        'Content-Type': 'application/json',
+                        'Accept-Encoding': 'gzip, deflate, br',
+                        'Connection': 'keep-alive',
+                        'Authorization': 'Bearer ' + token,
+                    },
+                });
+            })
+            .then((res) => {
+                return res.json()
+            })
+            .catch((error) => {
+                console.log(error);
+                return error;
+            })
+    }
+
+    /**
+     * Получить список всех пользователей проекта.
+     * @returns {Promise<*>}
+     */
+    adduser = async (data) => {
         return await this.basePostRequest(`ProjectParticipant`, data);
     }
 
+
+
+    /**
+     * Поиск пользователя.
+     * @returns {Promise<*>}
+     */
+    deleteProjectParticipant = async (data) => {
+        return this
+            .getToken()
+            .then(async (token) => {
+                return await fetch(`${this._apiBase}/projectParticipant/${data}`, {
+                    method: "DELETE",
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': '*/*',
+                        'Content-Type': 'application/json',
+                        'Accept-Encoding': 'gzip, deflate, br',
+                        'Connection': 'keep-alive',
+                        'Authorization': 'Bearer ' + token,
+                    },
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+                return error;
+            })
+    }
 
 }
 
