@@ -198,6 +198,67 @@ export default class TmsApi {
             })
     }
 
+
+    /**
+     * Поиск пользователя.
+     * @returns {Promise<*>}
+     */
+    getTestCaseList = async (id) => {
+        return this
+            .getToken()
+            .then(async (token) => {
+                return await fetch(`${this._apiBase}/TestCase?projectId=${id}`, {
+                    method: "GET",
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': '*/*',
+                        'Content-Type': 'application/json',
+                        'Accept-Encoding': 'gzip, deflate, br',
+                        'Connection': 'keep-alive',
+                        'Authorization': 'Bearer ' + token,
+                    },
+                });
+            })
+            .then((res) => {
+                return res.json()
+            })
+            .catch((error) => {
+                console.log(error);
+                return error;
+            })
+    }
+
+    /**
+     * Поиск пользователя.
+     * @returns {Promise<*>}
+     */
+    getTestCaseDetails = async (projectId, testCaseid) => {
+        return this
+            .getToken()
+            .then(async (token) => {
+                return await fetch(`${this._apiBase}/TestCase/${testCaseid}`, {
+                    method: "GET",
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': '*/*',
+                        'Content-Type': 'application/json',
+                        'Accept-Encoding': 'gzip, deflate, br',
+                        'Connection': 'keep-alive',
+                        'Authorization': 'Bearer ' + token,
+                    },
+                });
+            })
+            .then((res) => {
+                return res.json()
+            })
+            .catch((error) => {
+                console.log(error);
+                return error;
+            })
+    }
+
 }
 
 

@@ -86,6 +86,7 @@ const AddUserInProjectForm = (props) => {
                     </form>
                     <hr/>
                     <ul className={"list-group"}>
+                        Найдено пользователей : {elements.length}
                         {elements}
                     </ul>
                 </Modal.Body>

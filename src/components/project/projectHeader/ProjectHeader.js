@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 const ProjectHeader = (props) => {
     const {projectInfo, role} = props;
@@ -13,7 +14,7 @@ const ProjectHeader = (props) => {
                     <h2>{projectInfo.projectName}</h2>
                 </div>
                 <div className={"row"}>
-                    <div className={"col-10"}>
+                    <div className={"col-8"}>
                         <div className={"projectItem_info"}>
                             <div>
                                 <span>{role.roleName}</span>
@@ -23,9 +24,15 @@ const ProjectHeader = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className={"col-2"}>
-                        <Link to={`./testCases`}>Сценарии тестирования</Link>
-                        <Link to={`./users`}>Пользователи</Link>
+                    <div className={"col-4"}>
+                        <div className={"d-flex justify-content-around"}>
+                            <Link to={`/project/${projectInfo.id}/testCases`}>
+                                <Button>Сценарии тестирования</Button>
+                            </Link>
+                            <Link to={`/project/${projectInfo.id}/users`}>
+                                <Button>Пользователи</Button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
