@@ -13,18 +13,20 @@ const ProjectTestCaseListItem = (props) => {
                 <div className={"row"}>
 
                     <header>
-                        <Link to={`./${props.info.id}`}>TestCase</Link>
+                        <Link to={`./${props.info.id}`}>
+                            <div>
+                                <h3>{props.info.name}</h3>
+                            </div>
+                        </Link>
                     </header>
+
                     <div>
-                        Id : {props.info.id}
+                        {props.info.description}
                     </div>
-                    <div>
-                        Описание : {props.info.description}
-                    </div>
-                    <div>
+                    <div className={"fw-bold"}>
                         Дата добавления : {date}
                     </div>
-                    <div>
+                    <div className={"fw-bold"}>
                         Автор : {props.info.user.userName}
                     </div>
                 </div>

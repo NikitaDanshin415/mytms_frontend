@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import TmsApi from "../../services/TmsApi";
 import ProjectHeader from "../project/projectHeader";
 import TestCaseStepElement from "../testCaseStepElement/TestCaseStepElement";
+import ProjectTestCaseDetailsInfo from "../projectTestCaseDetailsInfo/ProjectTestCaseDetailsInfo";
 
 const ProjectTestCaseDetails = () => {
 
@@ -63,9 +64,10 @@ const ProjectTestCaseDetails = () => {
             console.log(error)
         });
     }, [])
+
     const testCaseSteps = testCaseInfo.steps.map((el, index) => {
-        return(
-            <TestCaseStepElement element={el} index = {index}/>
+        return (
+            <TestCaseStepElement element={el} index={index} key={el.id}/>
         )
     })
 
@@ -73,12 +75,19 @@ const ProjectTestCaseDetails = () => {
     return (
         <div>
             <ProjectHeader projectInfo={projectInfo.project} role={projectInfo.projectRole}/>
-            <span>ProjectId: {testCaseInfo.id}</span>
-            <br/>
-            <span>TestCaseId: {testCaseInfo.description}</span>
-            <ul>
-                {testCaseSteps}
-            </ul>
+            <ProjectTestCaseDetailsInfo info={testCaseInfo}/>
+            <table className="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col-1">#</th>
+                    <th scope="col-6">Дествие</th>
+                    <th scope="col-5">Ожидаемая реакция</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {testCaseSteps}
+                </tbody>
+            </table>
         </div>
     )
 }

@@ -9,10 +9,11 @@ const ProjectHeader = (props) => {
 
     return (
         <div className={"row"}>
-            <div className={"projectHeader container"}>
+            <div className={"projectHeader container-fluid"}>
                 <div className={"row"}>
                     <h2>{projectInfo.projectName}</h2>
                 </div>
+
                 <div className={"row"}>
                     <div className={"col-8"}>
                         <div className={"projectItem_info"}>
@@ -24,14 +25,18 @@ const ProjectHeader = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className={"col-4"}>
-                        <div className={"d-flex justify-content-around"}>
-                            <Link to={`/project/${projectInfo.id}/testCases`}>
-                                <Button>Сценарии тестирования</Button>
-                            </Link>
-                            <Link to={`/project/${projectInfo.id}/users`}>
-                                <Button>Пользователи</Button>
-                            </Link>
+                    <div className={"col-sm-auto"}>
+                        <div className="btn-group" role="group" aria-label="Basic example">
+                            <div className="btn-group mr-2" role="group" aria-label="First group">
+                                <Link to={`/project/${projectInfo.id}/testCases`}>
+                                    <button type="button" className="btn btn-secondary m-1">Сценарии тестирования</button>
+                                </Link>
+
+                                <Link to={`/project/${projectInfo.id}/users`}>
+                                    <button type="button" className="btn btn-secondary m-1">Пользователи</button>
+                                </Link>
+
+                            </div>
                         </div>
                     </div>
                 </div>

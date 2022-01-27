@@ -12,6 +12,7 @@ import TestCaseList from "./components/projectTestCaseList/TestCaseList";
 import ProjectTestCaseList from "./components/projectTestCaseList/TestCaseList";
 import ProjectUserList from "./components/projectUserList/ProjectUserList";
 import ProjectTestCaseDetails from "./components/projectTestCaseDetails/ProjectTestCaseDetails";
+import AddTestCasePage from "./components/addTestCasePage/AddTestCasePage";
 
 export default class App extends React.Component {
 
@@ -50,7 +51,9 @@ export default class App extends React.Component {
                         <Header user={this.state.user}/>
                         <Routes>
                             <Route path="/project/:id" element={<Project/>}/>
+                            <Route path="/project/:id/testCases/:TestCaseId/edit" element={<h2>edit testCase page</h2>}/>
                             <Route path="/project/:id/testCases/:TestCaseId" element={<ProjectTestCaseDetails/>}/>
+                            <Route path="/project/:id/testCases/add" element={<AddTestCasePage/>}/>
                             <Route path="/project/:id/testCases" element={<ProjectTestCaseList/>}/>
                             <Route path="/project/:id/users" element={<ProjectUserList/>}/>
                             <Route path="/" element={<Home/>}/>
