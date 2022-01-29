@@ -8,7 +8,6 @@ import {OidcLogin} from "./components/oidcAuth/OidcLogin"
 import Header from "./components/header/Header";
 import Project from "./components/project";
 import NotFound from "./components/notFound/NotFound";
-import TestCaseList from "./components/projectTestCaseList/TestCaseList";
 import ProjectTestCaseList from "./components/projectTestCaseList/TestCaseList";
 import ProjectUserList from "./components/projectUserList/ProjectUserList";
 import ProjectTestCaseDetails from "./components/projectTestCaseDetails/ProjectTestCaseDetails";

@@ -1,8 +1,7 @@
 import {Button, Modal} from "react-bootstrap";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import TmsApi from "../../services/TmsApi";
 import {useParams} from "react-router-dom";
-import ProjectUserListItem from "../projectUserListItem/ProjectUserListItem";
 import UserListElement from "./userListElement/UserListElement";
 
 const AddUserInProjectForm = (props) => {

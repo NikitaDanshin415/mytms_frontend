@@ -128,7 +128,7 @@ export default class TmsApi {
      * @returns {Promise<*>}
      */
     getProjectUsers = async (projectId) => {
-        return await this.baseGetRequest(`ProjectParticipant`, projectId+"/users");
+        return await this.baseGetRequest(`ProjectParticipant`, projectId + "/users");
     }
 
     /**
@@ -168,7 +168,6 @@ export default class TmsApi {
     adduser = async (data) => {
         return await this.basePostRequest(`ProjectParticipant`, data);
     }
-
 
 
     /**
@@ -257,6 +256,16 @@ export default class TmsApi {
                 console.log(error);
                 return error;
             })
+    }
+
+
+    /**
+     * Добавление сценария тестирования включая шаги тестирования.
+     * @param data
+     * @returns {Promise<*>}
+     */
+    addTestCase = async (data) => {
+        return await this.basePostRequest("TestCase", data)
     }
 
 }
