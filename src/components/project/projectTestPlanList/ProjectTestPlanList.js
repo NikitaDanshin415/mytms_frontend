@@ -2,9 +2,9 @@ import PlusBtn from "../../plusBtn/PlusBtn";
 import ProjectTestPlanElement from "../ProjectTestPlanElement";
 import React, {useState} from "react";
 import AddFormProjectTestPlan from "./addFormProjectTestPlan/AddFormProjectTestPlan";
+import SearchPanel from "../../serchPanel";
 
 const ProjectTestPlanList = (props) => {
-
 
     if(props.testPlans===undefined){
         return null
@@ -29,13 +29,21 @@ const ProjectTestPlanList = (props) => {
         modalAddForm = <AddFormProjectTestPlan show={"true"} handleClose={props.setHideAddForm}/>
     }
 
+    const onSearchChange = (term) => {
+        props.setTerm(term);
+    }
+
+
+
     return (
         <div className={"projectTestPlan container p0 m0"}>
             <div>
                 <h2>Планы тестирования</h2>
             </div>
             <div >
-                <input type={"text"}/>
+                <SearchPanel
+                    onSerchChange={onSearchChange}
+                />
             </div>
             <div >
                 Всего= {list.length}

@@ -17,7 +17,7 @@ export default class SearchPanel extends React.Component{
 
     render() {
         return(
-            <div className={'searchPanel'}>
+            <div className={'form-control searchPanel border-0'}>
                 <input
                     placeholder={"Serch panel"}
                     value={this.state.term}

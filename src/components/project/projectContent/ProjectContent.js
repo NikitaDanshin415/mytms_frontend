@@ -21,8 +21,10 @@ const ProjectContent = (props) => {
         setShowAddForm(false);
     }
 
+    let [term, setTerm] = useState("");
 
     const api = new TmsApi();
+
     useEffect(() => {
         api
             .getTestPlans(projectId)
@@ -35,11 +37,24 @@ const ProjectContent = (props) => {
             })
     }, [showAddForm])
 
+    const search = (items, term) =>{
+        if(term === ""){
+            return items;
+        }
+
+        return items.filter((el) =>{
+            return el.testPlanName.toLowerCase().indexOf(term.toLowerCase()) > -1;
+        })
+    }
+
+    const visibleItems = search(testPlans, term)
+
     return(
         <div className={"project_content row "}>
             <div className={"col-3 p0 m0"}>
                 <ProjectTestPlanList
-                    testPlans={testPlans}
+                    testPlans={visibleItems}
+                    setTerm={setTerm}
 
                     selectPlan={setSelectedPlan}
                     selectedPlan={selectedPlan}
@@ -47,6 +62,8 @@ const ProjectContent = (props) => {
                     showAddForm = {showAddForm}
                     showAddTestPlanForm = {showAddTestPlanForm}
                     setHideAddForm = {hideAddTestPlanForm}
+
+
                 />
             </div>
             <div className={"col-9 p0 m0"}>

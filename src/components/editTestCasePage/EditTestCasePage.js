@@ -10,15 +10,13 @@ const EditTestCasePage = () =>{
     const [redirect, setRedirect] = useState(false);
 
     const [testCaseInfo, setTestCaseInfo] = useState({
-        testCaseName: null,
-        testCaseDescription: null,
+        testCaseName: "",
+        testCaseDescription: "",
     });
 
     const [inputFields, setInputFields] = useState([
         {action: '', reaction: ''},
     ])
-
-
 
     useEffect(()=>{
         const api = new TmsApi();
