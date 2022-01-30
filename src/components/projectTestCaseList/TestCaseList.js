@@ -21,7 +21,7 @@ const ProjectTestCaseList = () => {
 
     const elements = testCaseList.map((el) => {
         return (
-            <ProjectTestCaseListItem info={el}/>
+            <ProjectTestCaseListItem info={el} key={el.id}/>
         )
     })
 

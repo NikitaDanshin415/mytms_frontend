@@ -12,6 +12,7 @@ import ProjectTestCaseList from "./components/projectTestCaseList/TestCaseList";
 import ProjectUserList from "./components/projectUserList/ProjectUserList";
 import ProjectTestCaseDetails from "./components/projectTestCaseDetails/ProjectTestCaseDetails";
 import AddTestCasePage from "./components/addTestCasePage/AddTestCasePage";
+import EditTestCasePage from "./components/editTestCasePage/EditTestCasePage";
 
 export default class App extends React.Component {
 
@@ -50,7 +51,7 @@ export default class App extends React.Component {
                         <Header user={this.state.user}/>
                         <Routes>
                             <Route path="/project/:id" element={<Project/>}/>
-                            <Route path="/project/:id/testCases/:TestCaseId/edit" element={<h2>edit testCase page</h2>}/>
+                            <Route path="/project/:id/testCases/:TestCaseId/edit" element={<EditTestCasePage/>}/>
                             <Route path="/project/:id/testCases/:TestCaseId" element={<ProjectTestCaseDetails/>}/>
                             <Route path="/project/:id/testCases/add" element={<AddTestCasePage/>}/>
                             <Route path="/project/:id/testCases" element={<ProjectTestCaseList/>}/>
@@ -58,7 +59,6 @@ export default class App extends React.Component {
                             <Route path="/" element={<Home/>}/>
                             <Route path="*" element={<NotFound/>}/>
                         </Routes>
-
                     </Router>
                 </div>
 
@@ -70,9 +70,8 @@ export default class App extends React.Component {
             <div className="App auth container">
                 <Router>
                     <Routes>
-                        <Route path="/" element={<Auth/>}/>
                         <Route path="/oidcLogin" element={<OidcLogin/>}/>
-                        <Route path="*" element={<NotFound/>}/>
+                        <Route path="*" element={<Auth/>}/>
                     </Routes>
                 </Router>
             </div>

@@ -268,6 +268,60 @@ export default class TmsApi {
         return await this.basePostRequest("TestCase", data)
     }
 
+    /**
+     * Поиск пользователя.
+     * @returns {Promise<*>}
+     */
+    deleteTestCase = async (id) => {
+        return this
+            .getToken()
+            .then(async (token) => {
+                return await fetch(`${this._apiBase}/TestCase/${id}`, {
+                    method: "DELETE",
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': '*/*',
+                        'Content-Type': 'application/json',
+                        'Accept-Encoding': 'gzip, deflate, br',
+                        'Connection': 'keep-alive',
+                        'Authorization': 'Bearer ' + token,
+                    },
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+                return error;
+            })
+    }
+
+    /**
+     * Поиск пользователя.
+     * @returns {Promise<*>}
+     */
+    updateTestCase = async (data) => {
+        return this
+            .getToken()
+            .then(async (token) => {
+                return await fetch(`${this._apiBase}/TestCase/${data.id}`, {
+                    method: "PUT",
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': '*/*',
+                        'Content-Type': 'application/json',
+                        'Accept-Encoding': 'gzip, deflate, br',
+                        'Connection': 'keep-alive',
+                        'Authorization': 'Bearer ' + token,
+                    },
+                    body: JSON.stringify(data)
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+                return error;
+            })
+    }
 }
 
 

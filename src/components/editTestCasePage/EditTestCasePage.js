@@ -1,11 +1,12 @@
+import {useEffect, useState} from "react";
 import {Navigate, useParams} from "react-router-dom";
-import {useState} from "react";
 import PlusBtn from "../plusBtn/PlusBtn";
-import "./AddTestCasePage.css";
 import TmsApi from "../../services/TmsApi";
 
-const AddTestCasePage = () => {
+const EditTestCasePage = () =>{
+
     const [projectId] = useState(useParams().id);
+    const [testCaseId] = useState(useParams().TestCaseId);
     const [redirect, setRedirect] = useState(false);
 
     const [testCaseInfo, setTestCaseInfo] = useState({
@@ -16,6 +17,22 @@ const AddTestCasePage = () => {
     const [inputFields, setInputFields] = useState([
         {action: '', reaction: ''},
     ])
+
+
+
+    useEffect(()=>{
+        const api = new TmsApi();
+
+        api.getTestCaseDetails(projectId, testCaseId)
+            .then((res) => {
+                setTestCaseInfo({
+                    testCaseName: res.name,
+                    testCaseDescription: res.description,
+                })
+
+                setInputFields(res.steps)
+            })
+    }, [])
 
     const fields = inputFields.map((el, index) => {
         return (
@@ -29,7 +46,6 @@ const AddTestCasePage = () => {
                         value={el.action}
                         onChange={e => handleChangeInput(index, e)}
                         name="action"
-                        required
                     />
                 </td>
                 <td>
@@ -38,7 +54,6 @@ const AddTestCasePage = () => {
                         value={el.reaction}
                         onChange={e => handleChangeInput(index, e)}
                         name="reaction"
-                        required
                     />
                 </td>
                 <td>
@@ -71,7 +86,6 @@ const AddTestCasePage = () => {
             values.push({action: '', reaction: ''})
         }
         setInputFields(values);
-
     }
 
     const changeTestCaseNameHandle = (e) =>{
@@ -87,15 +101,16 @@ const AddTestCasePage = () => {
         e.preventDefault();
 
         const data = {
-            projectId:projectId,
+            id: +testCaseId,
             name: testCaseInfo.testCaseName,
             description: testCaseInfo.testCaseDescription,
+            projectId:+projectId,
             steps: inputFields
         }
 
         const api = new TmsApi();
-        api.addTestCase(data)
-            .then(() => {
+        api.updateTestCase(data)
+            .then((res) => {
                 setRedirect(true)
             })
 
@@ -107,10 +122,10 @@ const AddTestCasePage = () => {
         )
     }
 
-    return (
+    return(
         <div className={"container-fluid"}>
             <div className={"row"}>
-                <h3>Добавление сценария тестирования</h3>
+                <h3>Редактирование сценария тестирования</h3>
             </div>
             <div>
                 <form>
@@ -121,6 +136,7 @@ const AddTestCasePage = () => {
                                    id={"testCaseName"}
                                    name={"testCaseName"}
                                    onChange={changeTestCaseNameHandle}
+                                   value={testCaseInfo.testCaseName}
                             />
                         </div>
                         <div className={"row mb-4"}>
@@ -129,6 +145,7 @@ const AddTestCasePage = () => {
                                       id={"testCaseDescription"}
                                       name={"testCaseDescription"}
                                       onChange={changeTestCaseDescriptionHandle}
+                                      value={testCaseInfo.testCaseDescription}
                             />
                         </div>
 
@@ -149,9 +166,9 @@ const AddTestCasePage = () => {
                 </form>
                 <PlusBtn showModal={addField}/>
             </div>
-            <button type="submit" onClick={sendForm} className={"btn btn-success"}>Добавить</button>
+            <button type="submit" onClick={sendForm} className={"btn btn-success"}>Сохранить</button>
         </div>
     )
 }
 
-export default AddTestCasePage;
+export default EditTestCasePage;

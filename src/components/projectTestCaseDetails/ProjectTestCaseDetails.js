@@ -1,14 +1,18 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Link, Navigate, useParams} from "react-router-dom";
 import TmsApi from "../../services/TmsApi";
 import ProjectHeader from "../project/projectHeader";
 import TestCaseStepElement from "../testCaseStepElement/TestCaseStepElement";
 import ProjectTestCaseDetailsInfo from "../projectTestCaseDetailsInfo/ProjectTestCaseDetailsInfo";
+import NotFound from "../notFound";
 
 const ProjectTestCaseDetails = () => {
 
     const [projectId] = useState(useParams().id);
     const [testCaseId] = useState(useParams().TestCaseId);
+
+
+    const [redirect, setRedirect] = useState(false);
     const [testCaseInfo, setTestCaseInfo] = useState(
         {
             steps: []
@@ -37,6 +41,11 @@ const ProjectTestCaseDetails = () => {
             .then((res) => {
                 setTestCaseInfo(res)
             })
+            .catch((res) =>{
+                return(
+                    <NotFound/>
+                )
+            })
 
 
     }, [])
@@ -62,6 +71,9 @@ const ProjectTestCaseDetails = () => {
                 })
             }).catch((error) => {
             console.log(error)
+            return(
+                <NotFound/>
+            )
         });
     }, [])
 
@@ -71,11 +83,35 @@ const ProjectTestCaseDetails = () => {
         )
     })
 
+    const deleteTestCase = (e) =>{
+        e.preventDefault();
+        api.deleteTestCase(testCaseId)
+            .then((res) => {
+               setRedirect(true)
+            })
+
+    }
+
+
+    if(redirect){
+        return <Navigate to={`/project/${projectId}/TestCases`}/>
+    }
 
     return (
         <div>
             <ProjectHeader projectInfo={projectInfo.project} role={projectInfo.projectRole}/>
             <ProjectTestCaseDetailsInfo info={testCaseInfo}/>
+
+            <div>
+                <button type="button"
+                        className="btn btn-danger m-1"
+                        onClick={deleteTestCase}>Удалить</button>
+                <Link to={"./edit"}>
+                    <button type="button"
+                            className="btn btn-primary m-1">Редактировать</button>
+                </Link>
+            </div>
+
             <table className="table table-bordered">
                 <thead>
                 <tr>
