@@ -8,9 +8,6 @@ const ProjectTestPlanElement = (props) =>{
     }
     let classList = "projectTestPlanElement";
 
-    if(props.selected){
-        classList += " selected"
-    }
 
     return(
         <div className={classList} onClick={selectItem}>

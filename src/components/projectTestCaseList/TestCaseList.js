@@ -4,6 +4,7 @@ import ProjectTestCaseListItem from "../projectTestCaseListItem/ProjectTestCaseL
 import TmsApi from "../../services/TmsApi";
 import PlusBtn from "../plusBtn/PlusBtn";
 import SearchPanel from "../serchPanel";
+import ProjectHeader from "../project/projectHeader";
 
 const ProjectTestCaseList = () => {
     const [projectId] = useState(useParams().id);
@@ -42,7 +43,8 @@ const ProjectTestCaseList = () => {
     })
     return (
         <div className={"container"}>
-            <h2>Сценарии тестирования</h2>
+            <ProjectHeader/>
+            <h2 className={"m-2"}>Сценарии тестирования</h2>
             <SearchPanel
                 onSerchChange = {onSearchChange}
             />

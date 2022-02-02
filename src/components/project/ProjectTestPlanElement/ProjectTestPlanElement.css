@@ -1,8 +1,4 @@
-.projectTestPlanElement{
-    border: 1px solid black;
-}
-
-.projectTestPlanElement:hover{
+.list-group-item:hover{
     background-color: rgba(150, 255, 150, 50%);
     cursor: pointer;
 }

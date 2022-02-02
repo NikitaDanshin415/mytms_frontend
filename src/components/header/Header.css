@@ -1,6 +1,7 @@
 .header_title{
     align-items: center;
 }
+
 .header_buttons{
     display: flex;
     justify-content: center;

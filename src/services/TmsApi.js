@@ -322,6 +322,53 @@ export default class TmsApi {
                 return error;
             })
     }
+
+    getTestPlanCases = async (id) => {
+        return this.baseGetRequest("TestPlanCases", +id);
+    }
+
+    addTestCaseResult = async (data) => {
+        return this.basePostRequest("TestCaseResult", data);
+    }
+
+    /**
+     * Получить все результаты сценария в плане.
+     */
+    getTestCaseResults = async (TestPlanId, TestCaseId) => {
+        return this
+            .getToken()
+            .then(async (token) => {
+                return await fetch(`${this._apiBase}/TestCaseResult?testCaseId=${TestCaseId}&testPlanId=${TestPlanId}`, {
+                    method: "GET",
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': '*/*',
+                        'Content-Type': 'application/json',
+                        'Accept-Encoding': 'gzip, deflate, br',
+                        'Connection': 'keep-alive',
+                        'Authorization': 'Bearer ' + token,
+                    },
+                });
+            })
+            .then((res) => {
+                return res.json()
+            })
+            .catch((error) => {
+                console.log(error);
+                return error;
+            })
+    }
+
+
+    /**
+     * Получение результатов тестирования.
+     * @param testCaseResultId
+     * @returns {Promise<*>}
+     */
+    getTestCaseResult = async (testCaseResultId) => {
+        return await this.baseGetRequest("TestCaseResult", testCaseResultId);
+    }
 }
 
 

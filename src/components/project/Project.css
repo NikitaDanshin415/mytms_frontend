@@ -4,15 +4,8 @@
 
 .project_content{
     display: flex;
-
 }
-
 
 .projectTestPlan{
-    border: 1px solid black;
     padding-bottom: 30px;
-}
-
-.projectTestCase{
-    border: 1px solid black;
 }

@@ -17,8 +17,15 @@ const ProjectTestPlanList = (props) => {
             selected = true;
         }
 
+        let classList = "list-group-item";
+
+        if(selected){
+            classList += " selected"
+        }
+
+
         return (
-            <li key={el.id} >
+            <li key={el.id} className={classList} >
                 <ProjectTestPlanElement element={el} select = {props.selectPlan} selected = {selected}/>
             </li>
         )
@@ -45,9 +52,11 @@ const ProjectTestPlanList = (props) => {
                     onSerchChange={onSearchChange}
                 />
             </div>
-            <div >
+            <div className={"mb-2"}>
                 Всего= {list.length}
-                <ul>{list}</ul>
+                <ul className={"list-group"}>
+                    {list}
+                </ul>
             </div>
             <PlusBtn
                 showModal={props.showAddTestPlanForm}

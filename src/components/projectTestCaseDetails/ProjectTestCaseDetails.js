@@ -11,7 +11,6 @@ const ProjectTestCaseDetails = () => {
     const [projectId] = useState(useParams().id);
     const [testCaseId] = useState(useParams().TestCaseId);
 
-
     const [redirect, setRedirect] = useState(false);
     const [testCaseInfo, setTestCaseInfo] = useState(
         {
@@ -19,21 +18,6 @@ const ProjectTestCaseDetails = () => {
         }
     )
 
-    const [projectInfo, setProjectInfo] = useState({
-        additionToProject: null,
-        id: null,
-        project: {
-            additionDate: null,
-            id: null,
-            projectName: null,
-            projectStatus: null,
-            projectStatusId: null,
-        },
-        projectRole: {
-            id: null,
-            roleName: null,
-        }
-    });
     const api = new TmsApi();
 
     useEffect(() => {
@@ -46,36 +30,8 @@ const ProjectTestCaseDetails = () => {
                     <NotFound/>
                 )
             })
-
-
     }, [])
 
-    useEffect(() => {
-        api
-            .getProject(projectId)
-            .then((json) => {
-                setProjectInfo({
-                    additionToProject: json.additionToProject,
-                    id: json.id,
-                    project: {
-                        additionDate: json.project.additionDate,
-                        id: json.project.id,
-                        projectName: json.project.projectName,
-                        projectStatus: json.project.projectStatus,
-                        projectStatusId: json.project.projectStatusId,
-                    },
-                    projectRole: {
-                        id: json.projectRole.id,
-                        roleName: json.projectRole.roleName
-                    }
-                })
-            }).catch((error) => {
-            console.log(error)
-            return(
-                <NotFound/>
-            )
-        });
-    }, [])
 
     const testCaseSteps = testCaseInfo.steps.map((el, index) => {
         return (
@@ -99,7 +55,7 @@ const ProjectTestCaseDetails = () => {
 
     return (
         <div>
-            <ProjectHeader projectInfo={projectInfo.project} role={projectInfo.projectRole}/>
+            <ProjectHeader/>
             <ProjectTestCaseDetailsInfo info={testCaseInfo}/>
 
             <div>

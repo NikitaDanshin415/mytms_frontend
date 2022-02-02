@@ -13,6 +13,9 @@ import ProjectUserList from "./components/projectUserList/ProjectUserList";
 import ProjectTestCaseDetails from "./components/projectTestCaseDetails/ProjectTestCaseDetails";
 import AddTestCasePage from "./components/addTestCasePage/AddTestCasePage";
 import EditTestCasePage from "./components/editTestCasePage/EditTestCasePage";
+import UseTestCase from "./components/UseTestCase/UseTestCase";
+import TestCaseResults from "./components/TestCaseResults/TestCaseResults";
+import TestCaseResultDetails from "./components/testCaseResultDetails/TestCaseResultDetails";
 
 export default class App extends React.Component {
 
@@ -53,6 +56,9 @@ export default class App extends React.Component {
                             <Route path="/project/:id" element={<Project/>}/>
                             <Route path="/project/:id/testCases/:TestCaseId/edit" element={<EditTestCasePage/>}/>
                             <Route path="/project/:id/testCases/:TestCaseId" element={<ProjectTestCaseDetails/>}/>
+                            <Route path="/project/:id/testPlan/:testPlanId/testCase/:TestCaseId/use" element={<UseTestCase/>}/>
+                            <Route path="/project/:id/testPlan/:testPlanId/testCase/:TestCaseId/results" element={<TestCaseResults/>}/>
+                            <Route path="/project/:id/testPlan/:testPlanId/testCase/:TestCaseId/results/:resultId" element={<TestCaseResultDetails/>}/>
                             <Route path="/project/:id/testCases/add" element={<AddTestCasePage/>}/>
                             <Route path="/project/:id/testCases" element={<ProjectTestCaseList/>}/>
                             <Route path="/project/:id/users" element={<ProjectUserList/>}/>

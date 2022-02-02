@@ -4,14 +4,17 @@ import "./ProjectList.css"
 
 const ProjectList = ({projects}) => {
 
+    let elements = <div></div>;
 
-    const elements = projects.map((item) => {
-        return (
-            <li key={item.id} className={"list-group-item"}>
-                <ProjectListItem project={item}/>
-            </li>
-        );
-    })
+    if (projects !== undefined) {
+        elements = projects.map((item) => {
+            return (
+                <li key={item.id} className={"list-group-item"}>
+                    <ProjectListItem project={item}/>
+                </li>
+            );
+        })
+    }
 
 
     return (
