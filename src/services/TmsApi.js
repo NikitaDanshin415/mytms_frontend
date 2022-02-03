@@ -369,6 +369,24 @@ export default class TmsApi {
     getTestCaseResult = async (testCaseResultId) => {
         return await this.baseGetRequest("TestCaseResult", testCaseResultId);
     }
+
+    /**
+     * Получение сценариев тестирования не входящих в выбранный план.
+     * @param testCaseResultId
+     * @returns {Promise<*>}
+     */
+    getTestCaseNotInPlan = async (projectId, testPlanId) => {
+        return await this.baseGetRequest("TestCase", `${projectId}/${testPlanId}`);
+    }
+
+    /**
+     * Получение сценариев тестирования не входящих в выбранный план.
+     * @param testCaseResultId
+     * @returns {Promise<*>}
+     */
+    addTestCaseInPlan = async (data) => {
+        return await this.basePostRequest("TestPlanCases", data);
+    }
 }
 
 

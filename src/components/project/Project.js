@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 
 import './Project.css'
-import ProjectHeader from "./projectHeader/ProjectHeader";
-import ProjectContent from "./projectContent/ProjectContent";
+import ProjectHeader from "../projectHeader/ProjectHeader";
+import ProjectContent from "../projectContent/ProjectContent";
 
 const Project = () => {
     return (

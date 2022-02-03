@@ -1,6 +1,6 @@
 import {Button, Modal} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import TmsApi from "../../../../services/TmsApi";
+import TmsApi from "../../services/TmsApi";
 import {useParams} from "react-router-dom";
 
 

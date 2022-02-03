@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import NotFound from "../../notFound";
-import TmsApi from "../../../services/TmsApi";
+import NotFound from "../notFound";
+import TmsApi from "../../services/TmsApi";
 
 const ProjectHeader = () => {
     const [projectId] = useState(useParams().id);

@@ -5,7 +5,7 @@ import TmsApi from "../../services/TmsApi";
 import PlusBtn from "../plusBtn/PlusBtn";
 import AddUserInProjectForm from "../addUserInProjectForm/AddUserInProjectForm";
 import data from "bootstrap/js/src/dom/data";
-import ProjectHeader from "../project/projectHeader";
+import ProjectHeader from "../projectHeader";
 
 const ProjectUserList = () => {
     const [projectId] = useState(useParams().id);

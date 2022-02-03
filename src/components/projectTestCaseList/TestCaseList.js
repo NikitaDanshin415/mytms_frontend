@@ -4,7 +4,7 @@ import ProjectTestCaseListItem from "../projectTestCaseListItem/ProjectTestCaseL
 import TmsApi from "../../services/TmsApi";
 import PlusBtn from "../plusBtn/PlusBtn";
 import SearchPanel from "../serchPanel";
-import ProjectHeader from "../project/projectHeader";
+import ProjectHeader from "../projectHeader";
 
 const ProjectTestCaseList = () => {
     const [projectId] = useState(useParams().id);

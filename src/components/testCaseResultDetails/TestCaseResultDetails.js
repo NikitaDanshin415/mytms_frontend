@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Link, Navigate, useParams} from "react-router-dom";
 import NotFound from "../notFound";
 import TestCaseStepElement from "../testCaseStepElement/TestCaseStepElement";
-import ProjectHeader from "../project/projectHeader";
+import ProjectHeader from "../projectHeader";
 import ProjectTestCaseDetailsInfo from "../projectTestCaseDetailsInfo/ProjectTestCaseDetailsInfo";
 
 const TestCaseResultDetails = () => {

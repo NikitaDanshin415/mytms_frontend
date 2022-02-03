@@ -1,7 +1,7 @@
 import TmsApi from "../../services/TmsApi";
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import ProjectHeader from "../project/projectHeader";
+import ProjectHeader from "../projectHeader";
 
 const TestCaseResults = () => {
 

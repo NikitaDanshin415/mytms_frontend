@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link, Navigate, useParams} from "react-router-dom";
 import TmsApi from "../../services/TmsApi";
-import ProjectHeader from "../project/projectHeader";
+import ProjectHeader from "../projectHeader";
 import TestCaseStepElement from "../testCaseStepElement/TestCaseStepElement";
 import ProjectTestCaseDetailsInfo from "../projectTestCaseDetailsInfo/ProjectTestCaseDetailsInfo";
 import NotFound from "../notFound";

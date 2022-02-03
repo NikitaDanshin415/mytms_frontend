@@ -1,7 +1,7 @@
-import ProjectTestPlanList from "../projectTestPlanList";
-import ProjectTestCaseList from "../projectTestCaseList";
+import ProjectTestPlanList from "../project/projectTestPlanList";
+import ProjectTestCaseList from "../project/projectTestCaseList";
 import React, {useEffect, useState} from "react";
-import TmsApi from "../../../services/TmsApi";
+import TmsApi from "../../services/TmsApi";
 import {useParams} from "react-router-dom";
 
 const ProjectContent = (props) => {
@@ -11,6 +11,7 @@ const ProjectContent = (props) => {
     const [selectedPlan, setSelectedPlan] = useState(null)
     const [error, setError] = useState(false);
     const [showAddForm, setShowAddForm] = useState(false);
+    const [showAddTestPlanCaseForm, setAddTestPlanCaseForm] = useState(false);
 
 
     const showAddTestPlanForm = () => {
@@ -20,6 +21,15 @@ const ProjectContent = (props) => {
     const hideAddTestPlanForm = () => {
         setShowAddForm(false);
     }
+
+    const showAddTestPlanCasesForm = () => {
+        setAddTestPlanCaseForm(true);
+    }
+
+    const hideAddTestPlanCasesForm = () => {
+        setAddTestPlanCaseForm(false);
+    }
+
 
     let [term, setTerm] = useState("");
 
@@ -62,14 +72,17 @@ const ProjectContent = (props) => {
                     showAddForm = {showAddForm}
                     showAddTestPlanForm = {showAddTestPlanForm}
                     setHideAddForm = {hideAddTestPlanForm}
-
-
                 />
             </div>
             <div className={"col-9 p0 m0"}>
-                <ProjectTestCaseList selectedPlan={selectedPlan}/>
-            </div>
+                <ProjectTestCaseList
+                    selectedPlan={selectedPlan}
 
+                    showForm={showAddTestPlanCaseForm}
+                    setShowForm={showAddTestPlanCasesForm}
+                    setHideForm={hideAddTestPlanCasesForm}
+                />
+            </div>
         </div>
     )
 }

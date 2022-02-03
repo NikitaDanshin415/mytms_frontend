@@ -3,7 +3,7 @@ import {Link, Navigate, useParams} from "react-router-dom";
 import TmsApi from "../../services/TmsApi";
 import NotFound from "../notFound";
 import TestCaseStepElement from "../testCaseStepElement/TestCaseStepElement";
-import ProjectHeader from "../project/projectHeader";
+import ProjectHeader from "../projectHeader";
 import ProjectTestCaseDetailsInfo from "../projectTestCaseDetailsInfo/ProjectTestCaseDetailsInfo";
 import UseTestCaseStepElement from "../UseTestCaseStepElement/UseTestCaseStepElement";
 import {Button} from "react-bootstrap";

@@ -1,7 +1,7 @@
 import PlusBtn from "../../plusBtn/PlusBtn";
-import ProjectTestPlanElement from "../ProjectTestPlanElement";
+import ProjectTestPlanElement from "../../ProjectTestPlanElement";
 import React, {useState} from "react";
-import AddFormProjectTestPlan from "./addFormProjectTestPlan/AddFormProjectTestPlan";
+import AddFormProjectTestPlan from "../../addFormProjectTestPlan/AddFormProjectTestPlan";
 import SearchPanel from "../../serchPanel";
 
 const ProjectTestPlanList = (props) => {
