@@ -24,14 +24,10 @@ export default class Header extends React.Component {
         return (
             <header className={"container"}>
                 <div className={"row"}>
-                    <div className={"col-9 p0 m0"}>
-                        <div className={"header_title"}>
-                            <Link to={"/"}>
-                                <div>
-                                    <h1>Система управления тестовыми сценариями</h1>
-                                </div>
-                            </Link>
-                        </div>
+                    <div className={"col-9 p0 m0 header_title"}>
+                        <Link to={"/"}>
+                            <h1>Система управления тестовыми сценариями</h1>
+                        </Link>
                     </div>
 
                     <div className={"col-3 p0 m0"}>

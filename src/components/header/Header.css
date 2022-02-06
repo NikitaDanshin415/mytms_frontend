@@ -1,5 +1,10 @@
 .header_title{
+    display: flex;
     align-items: center;
+}
+
+h1{
+    font-size: 37px;
 }
 
 .header_buttons{

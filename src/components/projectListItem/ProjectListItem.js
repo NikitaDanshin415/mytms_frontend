@@ -20,7 +20,7 @@ export default class ProjectListItem extends React.Component {
                         </Link>
                         <div className={"projectItem_info"}>
                             <div>
-                                <span>{project.projectRole.roleName}</span>
+                                <span>Ваша роль: {project.projectRole.roleName}</span>
                             </div>
                             <div>
                                 <span>Дата создания проекта: {date.getDate()}.{date.getMonth() + 1}.{date.getFullYear()}</span>

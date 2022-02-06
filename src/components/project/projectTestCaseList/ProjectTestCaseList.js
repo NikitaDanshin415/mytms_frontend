@@ -71,7 +71,7 @@ const ProjectTestCaseList = (props) => {
     }
 
     return (
-        <div className={"container"}>
+        <div className={"container pe-0"}>
             <h2>Сценарии тестирования</h2>
             <ul className={"list-group mb-2"}>
                 {elements}

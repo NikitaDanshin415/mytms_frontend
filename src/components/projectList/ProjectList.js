@@ -16,7 +16,6 @@ const ProjectList = ({projects}) => {
         })
     }
 
-
     return (
         <ul>
             {elements}

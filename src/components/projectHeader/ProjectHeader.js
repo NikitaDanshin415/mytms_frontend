@@ -58,7 +58,9 @@ const ProjectHeader = () => {
         <div className={"row"}>
             <div className={"projectHeader container-fluid"}>
                 <div className={"row"}>
-                    <h2>Проект: {projectInfo.project.projectName}</h2>
+                    <Link to={`/project/${projectId}`}>
+                        <h2>Проект: {projectInfo.project.projectName}</h2>
+                    </Link>
                 </div>
 
                 <div className={"row"}>
